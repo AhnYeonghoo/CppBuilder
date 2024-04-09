@@ -26,7 +26,7 @@ namespace ProgCom1
 	void SimpleFunc(void);
 }
 
-int main()
+int mainnamespace()
 {
 	BestComImpl::SimpleFunc();
 	ProgComImpl::SimpleFunc();

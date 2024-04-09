@@ -30,5 +30,14 @@
     <ClCompile Include="namespace.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="for.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="lucky_number.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="reference.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
