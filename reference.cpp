@@ -12,7 +12,7 @@ int change_val(int& p)
 	return 0;
 }
 
-int main()
+int mainRefernce()
 {
 	int number = 5;
 
