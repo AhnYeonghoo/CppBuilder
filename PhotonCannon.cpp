@@ -48,5 +48,7 @@ int mainPhotonCannon()
 	pc1.show_status();
 	pc2.show_status();
 
+
+
 	return 0;
 }
