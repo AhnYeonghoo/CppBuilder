@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="animal.cpp" />
     <ClCompile Include="arrayReference.cpp" />
+    <ClCompile Include="Class.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="for.cpp" />
     <ClCompile Include="inline_function.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="main_chapter1_2.cpp" />
     <ClCompile Include="main_chapter1_3.cpp" />
     <ClCompile Include="Marine.cpp" />
+    <ClCompile Include="Marine2.cpp" />
     <ClCompile Include="namespace.cpp" />
     <ClCompile Include="newDelete.cpp" />
     <ClCompile Include="PhotonCannon.cpp" />

@@ -23,4 +23,6 @@ int mainClass()
 
 	rachel._name = "Rachel";
 
+	return 0;
+
 }
