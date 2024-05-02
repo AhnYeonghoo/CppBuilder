@@ -14,6 +14,7 @@
 #include "DEVICE/AXT/AXTLIB.h"
 #include "DEVICE/AXT/AxtCamcFs.h"
 #include "DEVICE/AXT/AxtCAMCFS20.h"
+#include "VrSwitch.hpp"
 
 #pragma comment(lib, "DEVICE/AxtLib.lib")
 
@@ -21,67 +22,58 @@
 class TForm9 : public TForm
 {
 __published:	// IDE-managed Components
-	TButton *InputButton0;
-	TButton *InputButton1;
-	TButton *InputButton6;
-	TButton *InputButton7;
-	TButton *InputButton8;
-	TButton *InputButton2;
-	TButton *InputButton5;
-	TButton *InputButton3;
-	TButton *InputButton4;
-	TButton *InputButtonB;
-	TButton *InputButtonA;
-	TButton *InputButton9;
-	TButton *InputButtonD;
-	TButton *InputButtonC;
-	TButton *InputButtonE;
-	TButton *InputButtonF;
 	TListBox *ListBox1;
-	TPanel *OutputButton1;
-	TPanel *OutputButton2;
-	TPanel *OutputButton0;
-	TPanel *OutputButton3;
-	TPanel *OutputButton4;
-	TPanel *OutputButton5;
-	TPanel *OutputButton6;
-	TPanel *OutputButton7;
-	TPanel *OutputButton8;
-	TPanel *OutputButton9;
-	TPanel *OutputButtonA;
-	TPanel *OutputButtonB;
-	TPanel *OutputButtonC;
-	TPanel *OutputButtonD;
-	TPanel *OutputButtonE;
-	TPanel *OutputButtonF;
 	TVrArrow *ArrowDown;
 	TVrArrow *ArrowRight;
 	TVrArrow *ArrowUp;
 	TVrArrow *ArrowLeft;
+	TVrSwitch *VrSwitch0;
+	TVrSwitch *VrSwitch1;
+	TVrSwitch *VrSwitch2;
+	TVrSwitch *VrSwitch33;
+	TVrSwitch *VrSwitch4;
+	TVrSwitch *VrSwitch5;
+	TVrSwitch *VrSwitch6;
+	TVrSwitch *VrSwitch7;
+	TVrSwitch *VrSwitch8;
+	TVrSwitch *VrSwitch9;
+	TVrSwitch *VrSwitchA;
+	TVrSwitch *VrSwitchB;
+	TVrSwitch *VrSwitchC;
+	TVrSwitch *VrSwitchD;
+	TVrSwitch *VrSwitchE;
+	TVrSwitch *VrSwitchF;
+	TEdit *Edit0;
+	TEdit *Edit2;
+	TEdit *Edit1;
+	TEdit *Edit4;
+	TEdit *Edit3;
+	TEdit *Edit6;
+	TEdit *Edit7;
+	TEdit *Edit8;
+	TEdit *Edit9;
+	TEdit *Edit10;
+	TEdit *Edit11;
+	TEdit *Edit12;
+	TEdit *Edit13;
+	TEdit *Edit15;
+	TEdit *Edit14;
+	TEdit *Edit5;
 	TComboBox *ModuleList;
 	void __fastcall FormCreate(TObject *Sender);
-	void __fastcall InputButton0Click(TObject *Sender);
-	void __fastcall InputButton1Click(TObject *Sender);
-	void __fastcall InputButton2Click(TObject *Sender);
-	void __fastcall InputButton3Click(TObject *Sender);
-	void __fastcall InputButton4Click(TObject *Sender);
-	void __fastcall InputButton5Click(TObject *Sender);
-	void __fastcall InputButton6Click(TObject *Sender);
-	void __fastcall InputButton7Click(TObject *Sender);
-	void __fastcall InputButton8Click(TObject *Sender);
-	void __fastcall InputButton9Click(TObject *Sender);
-	void __fastcall InputButtonAClick(TObject *Sender);
-	void __fastcall InputButtonBClick(TObject *Sender);
-	void __fastcall InputButtonCClick(TObject *Sender);
-	void __fastcall InputButtonDClick(TObject *Sender);
-	void __fastcall InputButtonEClick(TObject *Sender);
-	void __fastcall InputButtonFClick(TObject *Sender);
-	void __fastcall ArrowLeftClick(TObject *Sender);
-	void __fastcall ArrowRightClick(TObject *Sender);
+	void __fastcall VrSwitch1Change(TObject *Sender);
+
+
+
+	protected:
+	TEdit *EditControls[16];
 
 
 private:
-void SearchModule();// User declarations
+
+	void SearchModule();// User declarations
+	void __fastcall ReadModule(TObject *Sender);
+	void __fastcall WriteModule(TVrSwitch *VrSwitch, int Offset);
 public:		// User declarations
 	__fastcall TForm9(TComponent* Owner);
 };

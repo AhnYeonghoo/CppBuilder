@@ -16,12 +16,42 @@
 #pragma link "VrControls"
 #pragma link "VrThreads"
 #pragma link "VrArrow"
+#pragma link "VrSwitch"
 #pragma resource "*.dfm"
+
 TForm9 *Form9;
+
+UINT16 uModuleNo;
 //---------------------------------------------------------------------------
 __fastcall TForm9::TForm9(TComponent* Owner)
 	: TForm(Owner)
 {
+
+	VrSwitch0->OnChange = VrSwitch1Change;
+	VrSwitch1->OnChange = VrSwitch1Change;
+	VrSwitch2->OnChange = VrSwitch1Change;
+	VrSwitch33->OnChange = VrSwitch1Change;
+	VrSwitch4->OnChange = VrSwitch1Change;
+	VrSwitch5->OnChange = VrSwitch1Change;
+	VrSwitch6->OnChange = VrSwitch1Change;
+	VrSwitch7->OnChange = VrSwitch1Change;
+	VrSwitch8->OnChange = VrSwitch1Change;
+	VrSwitch9->OnChange = VrSwitch1Change;
+	VrSwitchA->OnChange = VrSwitch1Change;
+	VrSwitchB->OnChange = VrSwitch1Change;
+	VrSwitchC->OnChange = VrSwitch1Change;
+	VrSwitchD->OnChange = VrSwitch1Change;
+	VrSwitchE->OnChange = VrSwitch1Change;
+	VrSwitchF->OnChange = VrSwitch1Change;
+
+	EditControls[0] = Edit0;   EditControls[8] = Edit8;
+	EditControls[1] = Edit1;   EditControls[9] = Edit9;
+	EditControls[2] = Edit2;   EditControls[10] = Edit10;
+	EditControls[3] = Edit3;   EditControls[11] = Edit11;
+	EditControls[4] = Edit4;   EditControls[12] = Edit12;
+	EditControls[5] = Edit5;   EditControls[13] = Edit13;
+	EditControls[6] = Edit6;   EditControls[14] = Edit14;
+	EditControls[7] = Edit7;   EditControls[15] = Edit15;
 }
 //---------------------------------------------------------------------------
 
@@ -110,231 +140,45 @@ void TForm9::SearchModule() {
 	}
 }
 
+//---------------------------------------------------------------------------
 
-void __fastcall TForm9::InputButton0Click(TObject *Sender)
+
+void __fastcall TForm9::WriteModule(TVrSwitch *VrSwitch, int Offset)
 {
-	// 어떤 모듈인지 확인하고 실제 장비에 신호 주는 것으로 변경하기
-
-	CFSset_servo_enable(0, ENABLE);
-	if (OutputButton0->Color == clRed)
+	if(VrSwitch->Offset == 3)
 	{
-		OutputButton0->Color = clBlue;
+	  // DIOwrite_outport_bit (모듈번호, offset, 비트) offset == 접점번호
+	  DIOwrite_outport_bit(uModuleNo, Offset, 1);
 	}
 	else
 	{
-        OutputButton0->Color = clRed;
-    }
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButton1Click(TObject *Sender)
-{
-	if (OutputButton1->Color == clRed)
-	{
-		OutputButton1->Color = clBlue;
+	   DIOwrite_outport_bit(uModuleNo, Offset, 0);
 	}
-	else
-	{
-        OutputButton1->Color = clRed;
-    }
-}
-//---------------------------------------------------------------------------
 
-void __fastcall TForm9::InputButton2Click(TObject *Sender)
+}
+
+void __fastcall TForm9::ReadModule(TObject *Sender)
 {
-	if (OutputButton2->Color == clRed)
+	int OffSet[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+	int arrSize = sizeof(OffSet)/sizeof(OffSet[0]);
+	int status;
+	for(int i=0; i< arrSize; i++)
 	{
-		OutputButton2->Color = clBlue;
-	}
-	else
-	{
-		OutputButton2->Color = clRed;
+		/* 각 Offset의 Read값 업데이트*/
+	   status = DIOread_inport_bit(uModuleNo,i);
+	   EditControls[i]->Text = IntToStr(status);
 	}
 }
-//---------------------------------------------------------------------------
 
-void __fastcall TForm9::InputButton3Click(TObject *Sender)
-{
-	if (OutputButton3->Color == clRed)
-	{
-		OutputButton3->Color = clBlue;
-	}
-	else
-	{
-		OutputButton3->Color = clRed;
-    }
-}
-//---------------------------------------------------------------------------
 
-void __fastcall TForm9::InputButton4Click(TObject *Sender)
-{
-	if (OutputButton4->Color == clRed)
-	{
-		OutputButton4->Color = clBlue;
-	}
-	else
-	{
-		OutputButton4->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
 
-void __fastcall TForm9::InputButton5Click(TObject *Sender)
+void __fastcall TForm9::VrSwitch1Change(TObject *Sender)
 {
-	if (OutputButton5->Color == clRed)
-	{
-		OutputButton5->Color = clBlue;
-	}
-	else
-	{
-		OutputButton5->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
+	TVrSwitch *VrSwitch = dynamic_cast<TVrSwitch *>(Sender);
 
-void __fastcall TForm9::InputButton6Click(TObject *Sender)
-{
-	if (OutputButton6->Color == clRed)
-	{
-		OutputButton6->Color = clBlue;
-	}
-	else
-	{
-		OutputButton6->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
+	int SwitchId = VrSwitch->Tag;
 
-void __fastcall TForm9::InputButton7Click(TObject *Sender)
-{
-	if (OutputButton7->Color == clRed)
-	{
-		OutputButton7->Color = clBlue;
-	}
-	else
-	{
-		OutputButton7->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButton8Click(TObject *Sender)
-{
-   if (OutputButton8->Color == clRed)
-	{
-		OutputButton8->Color = clBlue;
-	}
-	else
-	{
-		OutputButton8->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButton9Click(TObject *Sender)
-{
-	if (OutputButton9->Color == clRed)
-	{
-		OutputButton9->Color = clBlue;
-	}
-	else
-	{
-		OutputButton9->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButtonAClick(TObject *Sender)
-{
-	if (OutputButtonA->Color == clRed)
-	{
-		OutputButtonA->Color = clBlue;
-	}
-	else
-	{
-		OutputButtonA->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButtonBClick(TObject *Sender)
-{
-	if (OutputButtonB->Color == clRed)
-	{
-		OutputButtonB->Color = clBlue;
-	}
-	else
-	{
-		OutputButtonB->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButtonCClick(TObject *Sender)
-{
-	if (OutputButtonC->Color == clRed)
-	{
-		OutputButtonC->Color = clBlue;
-	}
-	else
-	{
-		OutputButtonC->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButtonDClick(TObject *Sender)
-{
-	if (OutputButtonD->Color == clRed)
-	{
-		OutputButtonD->Color = clBlue;
-	}
-	else
-	{
-		OutputButtonD->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButtonEClick(TObject *Sender)
-{
-	if (OutputButtonE->Color == clRed)
-	{
-		OutputButtonE->Color = clBlue;
-	}
-	else
-	{
-		OutputButtonE->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::InputButtonFClick(TObject *Sender)
-{
-	if (OutputButtonF->Color == clRed)
-	{
-		OutputButtonF->Color = clBlue;
-	}
-	else
-	{
-		OutputButtonF->Color = clRed;
-	}
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::ArrowLeftClick(TObject *Sender)
-{
-	// 컨베이어 벨트 왼쪽으로 이동하는 것 구현
-	// 어떤 모듈인지 확인해야 함
-	ShowMessage(L"컨베이어 벨트 왼쪽으로 이동!");
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm9::ArrowRightClick(TObject *Sender)
-{
-	// 컨베이어 벨트 오른쪽으로 이동하는 것 구현
-	// 어떤 모듈인지 확인해야 함
-	ShowMessage(L"컨베이어 벨트 오른쪽으로 이동!");
+	WriteModule(VrSwitch, SwitchId);
 }
 //---------------------------------------------------------------------------
 
