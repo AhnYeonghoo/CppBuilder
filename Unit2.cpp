@@ -11,6 +11,8 @@
 #include "DEVICE/AXT/AxtKeCAMCFS20.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+#pragma link "VrArrow"
+#pragma link "VrControls"
 #pragma resource "*.dfm"
 #pragma comment(lib, "DEVICE/AXT/AxtLib.lib")
 TForm2 *Form2;
@@ -89,6 +91,7 @@ void __fastcall TForm2::FormCreate(TObject *Sender)
 	output[14] = btnOutput14;
 	output[15] = btnOutput15;
 
+    SearchModule();
 	InitializeSetting();
 
 }
@@ -97,25 +100,80 @@ void __fastcall TForm2::FormCreate(TObject *Sender)
 void TForm2::InitializeSetting()
 {
 	// dd
+	 UnicodeString sDriveModeList[8] =  {"OneHighLowHigh", "OneHighHighLow", "OneLowLowHigh",
+	"OneLowHighLow", "TwoCcwCwHigh", "TwoCcwCwLow", "TwoCwCCwHigh", "TwoCwCcwLow" };
 
+	UnicodeString sDetectList[16] =  {"PElmNegativeEdge", "NElmNegativeEdge", "PSlmNegativeEdge",
+		"NSlmNegativeEdge", "In0DownEdge", "In1DownEdge", "In2DownEdge", "In3DownEdge",
+		"PElmPositiveEdge", "NElmPositiveEdge", "PSlmPositiveEdge", "NSlmPositiveEdge",
+		"In0UpEdge", "In1UpEdge", "In2UpEdge", "In3UpEdge"};
 
+	// 펄스 출력 방식을 리스트화 한다.
+	for(int i = 0; i < 8; i++)
+	{
+		cbDriveModeList->Items->Add(sDriveModeList[i]);
+	}
+
+	SetnTotalAxisCount(CFSget_total_numof_axis());
+	edtTotalAxisCount->Text = IntToStr(GetnTotalAxisCount());
+	CFS20KeSetMainClk(F_16_384M_CLK);
+
+	for (int i = 0; i < 16; i++)
+	{
+		cbDetectList->Items->Add(sDetectList[i]);
+	}
 
 
 }
 
+
+
+
+void TForm2::SetnCount(WORD nCount)
+{
+	this->nCount = nCount;
+}
+
+WORD TForm2::GetnCount()
+{
+	return this->nCount;
+}
+
+UINT16 TForm2::GetwModuleID()
+{
+	return this->wModuleID;
+}
+
+void TForm2::SetwModuleID(UINT16 wModuleID)
+{
+	this->wModuleID = wModuleID;
+}
+
+INT16 TForm2::GetnCarrierBoardCount()
+{
+	return this->nCarrierBoardCount;
+}
+
+void TForm2::SetnCarrierBoardCount(INT16 nCarrierBoardCount)
+{
+    this->nCarrierBoardCount = nCarrierBoardCount;
+}
+
+
+
 void TForm2::SearchModule()
 {
-	WORD nCount;
 	INT16 nBoardNo, nModulePos;
-	UINT16 wModuleID;
+	INT16 nAxisCount;
+	SetnCount(DIOget_module_count());
 	int nPosCount;
 	int nIndex;
 
-	nCount = DIOget_module_count();
 
-	if (nCount > 0)
+
+	if (GetnCount() > 0)
 	{
-		for (int i = 0; i < nCount; i++)
+		for (int i = 0; i < GetnCount(); i++)
 		{
 			switch (DIOget_module_id(i))
 			{
@@ -123,7 +181,13 @@ void TForm2::SearchModule()
 				DIOget_module_info(i, &nBoardNo, &nModulePos);
 				nDIOModulePos[nPosCount] = i;
 				nTempBoardNo[i] = nBoardNo;
+				SetnCarrierBoardCount(CFS20get_numof_boards());
+				edtCarrierBoardCount->Text = IntToStr(GetnCarrierBoardCount());
 				selectModule->Items->Add(IntToStr(nModulePos));
+				edtCarrierBoardNo->Text = IntToStr(nBoardNo);
+				nAxisCount = CFS20get_numof_axes(nBoardNo);
+				edtAxisCount->Text = IntToStr(nAxisCount);
+				cbAxisList->Items->Add(CFSget_axisno(nBoardNo, nModulePos));
 				nPosCount++;
 				break;
 
@@ -131,7 +195,13 @@ void TForm2::SearchModule()
 				DIOget_module_info(i, &nBoardNo, &nModulePos);
 				nDIOModulePos[nPosCount] = i;
 				nTempBoardNo[i] = nBoardNo;
+				edtCarrierBoardNo->Text = IntToStr(nBoardNo);
+				SetnCarrierBoardCount(CFS20get_numof_boards());
+				edtCarrierBoardCount->Text = IntToStr(GetnCarrierBoardCount());
 				selectModule->Items->Add(IntToStr(nModulePos));
+				nAxisCount = CFS20get_numof_axes(nBoardNo);
+				edtAxisCount->Text = IntToStr(nAxisCount);
+				cbAxisList->Items->Add(CFSget_axisno(nBoardNo, nModulePos));
 				nPosCount++;
 				break;
 
@@ -139,7 +209,13 @@ void TForm2::SearchModule()
 				DIOget_module_info(i, &nBoardNo, &nModulePos);
 				nDIOModulePos[nPosCount] = i;
 				nTempBoardNo[i] = nBoardNo;
+				edtCarrierBoardNo->Text = IntToStr(nBoardNo);
+				SetnCarrierBoardCount(CFS20get_numof_boards());
+				edtCarrierBoardCount->Text = IntToStr(GetnCarrierBoardCount());
 				selectModule->Items->Add(IntToStr(nModulePos));
+				nAxisCount = CFS20get_numof_axes(nBoardNo);
+				edtAxisCount->Text = IntToStr(nAxisCount);
+				cbAxisList->Items->Add(CFSget_axisno(nBoardNo, nModulePos));
 				nPosCount++;
 				break;
 
@@ -147,7 +223,13 @@ void TForm2::SearchModule()
 				DIOget_module_info(i, &nBoardNo, &nModulePos);
 				nDIOModulePos[nPosCount] = i;
 				nTempBoardNo[i] = nBoardNo;
+				edtCarrierBoardNo->Text = IntToStr(nBoardNo);
+				SetnCarrierBoardCount(CFS20get_numof_boards());
+				edtCarrierBoardCount->Text = IntToStr(GetnCarrierBoardCount());
 				selectModule->Items->Add(IntToStr(nModulePos));
+				nAxisCount = CFS20get_numof_axes(nBoardNo);
+				edtAxisCount->Text = IntToStr(nAxisCount);
+				cbAxisList->Items->Add(CFSget_axisno(nBoardNo, nModulePos));
 				nPosCount++;
 				break;
 
@@ -155,7 +237,13 @@ void TForm2::SearchModule()
 				DIOget_module_info(i, &nBoardNo, &nModulePos);
 				nDIOModulePos[nPosCount] = i;
 				nTempBoardNo[i] = nBoardNo;
+				edtCarrierBoardNo->Text = IntToStr(nBoardNo);
+				SetnCarrierBoardCount(CFS20get_numof_boards());
+				edtCarrierBoardCount->Text = IntToStr(GetnCarrierBoardCount());
 				selectModule->Items->Add(IntToStr(nModulePos));
+				nAxisCount = CFS20get_numof_axes(nBoardNo);
+				edtAxisCount->Text = IntToStr(nAxisCount);
+				cbAxisList->Items->Add(CFSget_axisno(nBoardNo, nModulePos));
 				nPosCount++;
 				break;
 
@@ -377,67 +465,144 @@ void __fastcall TForm2::Timer1Timer(TObject *Sender)
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm2::chkServoOnClick(TObject *Sender)
+
+void __fastcall TForm2::btnStopModuleClick(TObject *Sender)
 {
-	if (chkServoOn->Checked) CFS20set_servo_enable(0, ENABLE);
-	else CFS20set_servo_enable(0, DISABLE);
+    CFS20StopService();
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm2::btnRotateClick(TObject *Sender)
+
+
+//---------------------------------------------------------------------------
+
+
+
+// Setting에서 읽어온 값 불러오기
+void __fastcall TForm2::Timer2Timer(TObject *Sender)
 {
-	double position, velocity, accel;
-	position = StrToFloat(edtPosition->Text);
-	velocity = StrToFloat(edtSpeed->Text);
-	accel = StrToFloat(edtAccel->Text);
-	CFS20set_max_speed(0, velocity);
-	CFS20v_move(0, velocity, accel);
+
+	CFS20set_plimit_sel(0, 1);
+	CFS20set_moveunit_perpulse(StrToInt(cbAxisList->Text), 100);
+	UINT8 servoEnable = CFS20get_servo_enable(StrToInt(cbAxisList->Text));
+	edtReadServoOn->Text = servoEnable;
+	UINT8 inpositionEnable = CFS20get_inposition_enable(StrToInt(cbAxisList->Text));
+	edtReadInposition->Text = inpositionEnable;
+	UINT8 alarmEnable = CFS20get_alarm_enable(StrToInt(cbAxisList->Text));
+	edtReadAlarm->Text = alarmEnable;
+	UINT8 endLimitPlusEnable = CFS20get_end_limit_enable(StrToInt(cbAxisList->Text));
+	edtReadEndLimitPlus->Text = endLimitPlusEnable;
+	UINT8 endLimitMinusLevel = CFS20get_nend_limit_level(StrToInt(cbAxisList->Text));
+	edtReadEndLimitMinus->Text = endLimitMinusLevel;
+	UINT8 slowLimitPlusEnable = CFS20get_slow_limit_enable(StrToInt(cbAxisList->Text));
+	edtReadSlowLimitPlus->Text = slowLimitPlusEnable;
+	CFSset_pulse_out_method(StrToInt(cbAxisList->Text), OneHighLowHigh);
+//	UINT8 slowLimitMinusLevel = CFS20get_nslow_limit_level(StrToInt(cbAxisList->Text));
+//	edtReadSlowLimitMinus->Text = slowLimitMinusLevel;
+
 }
 //---------------------------------------------------------------------------
+
+
 void __fastcall TForm2::chkEndLimitPlusClick(TObject *Sender)
 {
 	if (chkEndLimitPlus->Checked)
-		CFS20set_pend_limit_level(0, 1);
+	{
+		CFS20set_end_limit_enable(StrToInt(cbAxisList->Text), ENABLE);
+	}
 	else
-		CFS20set_pend_limit_level(0, 0);
+	{
+		CFS20set_end_limit_enable(StrToInt(cbAxisList->Text), DISABLE);
+	}
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm2::chkEndLimitMinusClick(TObject *Sender)
+
+// Servo-On 신호의 출력 레벨을 설정한다.
+void __fastcall TForm2::chkServoOnClick(TObject *Sender)
 {
-	if (chkEndLimitMinus->Checked)
-		CFS20set_nend_limit_level(0, 1);
+	if (chkServoOn->Checked)
+	{
+		CFS20set_servo_enable(StrToInt(cbAxisList->Text), ENABLE);
+	}
 	else
-		CFS20set_nend_limit_level(0, 0);
+	{
+		CFS20set_servo_enable(StrToInt(cbAxisList->Text), DISABLE);
+    }
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm2::chkSlowLimitPlusClick(TObject *Sender)
-{
-	if (chkSlowLimitPlus->Checked)
-		CFS20set_pslow_limit_level(0, 1);
-	else
-		CFS20set_pslow_limit_level(0, 0);
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm2::chkSlowLimitMinusClick(TObject *Sender)
-{
-	if (chkSlowLimitMinus->Checked)
-		CFS20set_nslow_limit_level(0, 1);
-	else
-        CFS20set_pslow_limit_level(0, 0);
-}
-//---------------------------------------------------------------------------
+
 void __fastcall TForm2::chkInpositionClick(TObject *Sender)
 {
 	if (chkInposition->Checked)
-		CFS20set_inposition_level(0, 1);
+	{
+		CFS20set_inposition_enable(StrToInt(cbAxisList->Text), ENABLE);
+	}
 	else
-		CFS20set_inposition_level(0, 0);
+	{
+        CFS20set_inposition_enable(StrToInt(cbAxisList->Text), DISABLE);
+    }
 }
 //---------------------------------------------------------------------------
+
 void __fastcall TForm2::chkAlarmClick(TObject *Sender)
 {
 	if (chkAlarm->Checked)
-		CFS20set_alarm_level(0, 1);
+	{
+		CFS20set_alarm_enable(StrToInt(cbAxisList->Text), ENABLE);
+	}
 	else
-        CFS20set_alarm_level(0, 0);
+	{
+		CFS20set_alarm_enable(StrToInt(cbAxisList->Text), DISABLE);
+    }
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm2::chkEndLimitMinusClick(TObject *Sender)
+{
+	if (chkEndLimitMinus->Checked)
+	{
+		CFS20set_nend_limit_level(StrToInt(cbAxisList->Text), HIGH);
+	}
+	else
+	{
+		CFS20set_nend_limit_level(StrToInt(cbAxisList->Text), LOW);
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::chkSlowLimitPlusClick(TObject *Sender)
+{
+	if (chkSlowLimitPlus->Checked)
+	{
+		CFS20set_slow_limit_enable(StrToInt(cbAxisList->Text), ENABLE);
+	}
+	else
+	{
+		CFS20set_slow_limit_enable(StrToInt(cbAxisList->Text), DISABLE);
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::chkSlowLimitMinusClick(TObject *Sender)
+{
+	if (chkSlowLimitMinus->Checked)
+	{
+		CFS20set_nslow_limit_level(StrToInt(cbAxisList->Text), HIGH);
+	}
+	else
+	{
+		CFS20set_nslow_limit_level(StrToInt(cbAxisList->Text), LOW);
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm2::btnRotateClick(TObject *Sender)
+{
+	if (btnRotate->OnMouseEnter)
+	{
+		CFS20v_move(StrToInt(cbAxisList->Text), StrToFloat(edtSpeed->Text), StrToFloat(edtAccel->Text));
+	}
+
+}
+//---------------------------------------------------------------------------
+
+
