@@ -1,7 +1,6 @@
 //---------------------------------------------------------------------------
 
 #include <vcl.h>
-#include <string>
 #pragma hdrstop
 
 #include "Unit3.h"
@@ -13,60 +12,41 @@ TForm3 *Form3;
 __fastcall TForm3::TForm3(TComponent* Owner)
 	: TForm(Owner)
 {
+	Level = 1;
+    Operation = 1;
 }
 //---------------------------------------------------------------------------
-
-void __fastcall TForm3::InfoBtnClick(TObject *Sender)
+void __fastcall TForm3::btnAdditionClick(TObject *Sender)
 {
-	int port = StrToInt(Port->Text);
-	ClientSocket->Address = SerIP->Text;
-	ClientSocket->Port = port;
-	ClientSocket->Active = true;
+	int Operand1 = 0;
+	int Operand2 = 0;
+	Operation = 1;
 
-	if (ServerSocket->OnClientConnect)
+	if ( Level == 1 )
 	{
-		ChatList->Lines->Add("서버와 연결 오류");
+		Operand1 = Random(10);
+		Operand2 = Random(10);
+	}
+	else if ( Level == 2 )
+	{
+		Operand1 = Random(30);
+		Operand2 = Random(30);
+	}
+	else if ( Level == 3 )
+	{
+		Operand1 = Random(60);
+		Operand2 = Random(60);
 	}
 	else
 	{
-		ChatList->Lines->Add("서버와 연결 성공");
-		ChatList->Lines->Add(UserID->Text + "님이 입장하였습니다.");
+		Operand1 = Random(80);
+		Operand2 = Random(80);
 	}
-}
 
-void __fastcall TForm3::EchoWrite(TObject *Sender, TCustomWinSocket *Socket)
-{
-	String receivedData = Socket->ReceiveText();
-	for (int i = 0; i < ServerSocket->Socket->ActiveConnections; i++)
-	{
-		TCustomWinSocket* clientSocket = ServerSocket->Socket->Connections[i];
-		clientSocket->SendText(receivedData);
-	}
-}
-//---------------------------------------------------------------------------
+	lblOperand1->Caption = IntToStr(Operand1);
+	lblOperation->Caption = L"+";
+	lblOperand2->Caption = IntToStr(Operand2);
+	edtResult->Text = L"0";
 
-
-void __fastcall TForm3::TranBtnClick(TObject *Sender)
-{
-	String ServText = ChatEdit->Text;
-	ClientSocket->Socket->SendText(UserID->Text + ": " + ServText);
-}
-//---------------------------------------------------------------------------
-
-
-void __fastcall TForm3::ClientSocketRead(TObject* Sender, TCustomWinSocket* Socket)
-{
-	String receivedData = Socket->ReceiveText();
-	ChatList->Lines->Add(receivedData);
-
-}
-
-void __fastcall TForm3::SelBtnClick(TObject *Sender)
-{
-	if (ComboBox1->Text == "Server")
-	{
-		ServerSocket->Active = true;
-		ChatList->Lines->Add("서버 열기 성공");
-    }
 }
 //---------------------------------------------------------------------------
