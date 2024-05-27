@@ -5,34 +5,45 @@
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
-#include <System.Win.ScktComp.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
+#include <Vcl.Buttons.hpp>
 #include <Vcl.ExtCtrls.hpp>
-#include <Vcl.Imaging.pngimage.hpp>
 //---------------------------------------------------------------------------
 class TForm3 : public TForm
 {
 __published:	// IDE-managed Components
-	TComboBox *ComboBox1;
-	TImage *Image1;
-	TButton *SelBtn;
-	TEdit *SerIP;
-	TEdit *Port;
-	TEdit *UserID;
-	TButton *InfoBtn;
-	TEdit *ChatEdit;
-	TButton *TranBtn;
-	TMemo *ChatList;
-	TClientSocket *ClientSocket;
-	TServerSocket *ServerSocket;
-	void __fastcall InfoBtnClick(TObject *Sender);
-	void __fastcall TranBtnClick(TObject *Sender);
-	void __fastcall SelBtnClick(TObject *Sender);
-	void __fastcall ClientSocketRead(TObject* Sender, TCustomWinSocket* Socket);
-	void __fastcall EchoWrite(TObject *Sender, TCustomWinSocket *Socket);
-
-private:	// User declarations
+	TPanel *pnlLevel;
+	TPanel *pnlOperation;
+	TSpeedButton *btnLevel1;
+	TSpeedButton *btnLevel2;
+	TSpeedButton *btnLevel3;
+	TSpeedButton *btnLevel4;
+	TSpeedButton *btnAddition;
+	TSpeedButton *btnSubtraction;
+	TSpeedButton *btnMultiplication;
+	TSpeedButton *btnDivision;
+	TLabel *lblOperand1;
+	TLabel *lblOperand2;
+	TLabel *lblOperation;
+	TLabel *Label1;
+	TEdit *edtResult;
+	TButton *btnClose;
+	TButton *btnCheckResult;
+	void __fastcall btnAdditionClick(TObject *Sender);
+	void __fastcall btnSubtractionClick(TObject *Sender);
+	void __fastcall btnMultiplicationClick(TObject *Sender);
+	void __fastcall btnDivisionClick(TObject *Sender);
+	void __fastcall btnLevel1Click(TObject *Sender);
+	void __fastcall btnLevel2Click(TObject *Sender);
+	void __fastcall btnLevel3Click(TObject *Sender);
+	void __fastcall btnLevel4Click(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall btnCheckResultClick(TObject *Sender);
+	void __fastcall btnCloseClick(TObject *Sender);
+private:
+	int Level;
+	int Operation; // User declarations
 public:		// User declarations
 	__fastcall TForm3(TComponent* Owner);
 };

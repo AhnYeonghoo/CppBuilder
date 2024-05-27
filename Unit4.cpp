@@ -12,20 +12,21 @@ TForm4 *Form4;
 __fastcall TForm4::TForm4(TComponent* Owner)
 	: TForm(Owner)
 {
-
 }
-
 //---------------------------------------------------------------------------
-void __fastcall TForm4::FormCreate(TObject *Sender)
+void __fastcall TForm4::Timer1Timer(TObject *Sender)
 {
-	TGroupBox *gbxHolder = new TGroupBox(this);
-	gbxHolder->Parent = this;
+	TDateTime  CurTime = TDateTime::CurrentTime();
+	unsigned short Hours, Minutes, Seconds, Milliseconds;
 
-	gbxHolder->Top = 20;
-	gbxHolder->Left = 20;
-	gbxHolder->Width = 250;
-	gbxHolder->Height = 100;
+	CurTime.DecodeTime(&Hours, &Minutes, &Seconds, &Milliseconds);
 
-	gbxHolder->Caption = L"MemberShip";
+	pgrHours->Position = Hours;
+	pgrMinutes->Position = Minutes;
+	pgrSeconds->Position = Seconds;
+
+	lblHours->Caption = UnicodeString(Hours);
+	lblMinutes->Caption = UnicodeString(Minutes);
+	lblSeconds->Caption = UnicodeString(Seconds);
 }
 //---------------------------------------------------------------------------
