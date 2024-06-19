@@ -1,0 +1,362 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\CounterTest.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\CounterTest.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CounterTest 정보"
+FONT 9, "MS 셸 대화 상자", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "CounterTest 버전 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2011",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "확인",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_COUNTERTEST_DIALOG DIALOGEX 0, 0, 319, 479
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "CounterTest"
+FONT 9, "굴림", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_CBO_SEL_MODULE,78,8,228,325,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Select Module No : ",IDC_STATIC,12,12,62,10,
+                    SS_CENTERIMAGE
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,7,7,305,17
+    GROUPBOX        "Channel 00",IDC_GRP_CHANNEL_00,71,28,119,9,BS_FLAT
+    LTEXT           "Actual Position   :",IDC_STATIC,12,48,57,14,
+                    SS_CENTERIMAGE
+    RTEXT           "0.000",IDC_STC_ACT_POS_00,78,47,75,16,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    PUSHBUTTON      "Clear",IDC_BTN_POS_CLEAR_00,155,47,32,16,0,
+                    WS_EX_CLIENTEDGE
+    GROUPBOX        "Position Monitor",IDC_STATIC,7,37,305,51,BS_FLAT
+    GROUPBOX        "Channel 01",IDC_GRP_CHANNEL_01,193,28,119,9,BS_FLAT
+    RTEXT           "0.000",IDC_STC_ACT_POS_01,196,47,75,16,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    PUSHBUTTON      "Clear",IDC_BTN_POS_CLEAR_01,274,47,32,16,0,
+                    WS_EX_CLIENTEDGE
+    GROUPBOX        "Trigger Setting",IDC_STATIC,7,162,305,195,BS_FLAT
+    LTEXT           "Upper Position  :",IDC_STATIC,12,263,56,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDT_POS_UPPER_00,78,263,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_POS_UPPER_01,196,263,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Lower Position :",IDC_STATIC,12,280,56,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDT_POS_LOWER_00,78,280,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_POS_LOWER_01,196,280,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,190,47,2,34
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,190,174,2,52
+    GROUPBOX        "Signal Setting",IDC_STATIC,7,93,305,63,BS_FLAT
+    LTEXT           "Encoder Method:",IDC_STATIC,12,118,56,14,SS_CENTERIMAGE
+    COMBOBOX        IDC_CBO_ENC_METHOD_00,78,116,108,168,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBO_ENC_METHOD_01,196,116,108,168,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,190,104,2,45
+    LISTBOX         IDC_LST_LOG,7,414,305,58,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Apply",IDC_BTN_TRIG_APPLY_00,78,315,108,16
+    PUSHBUTTON      "Apply",IDC_BTN_TRIG_APPLY_01,196,315,108,16
+    LTEXT           "Trigger Setting  :",IDC_STATIC,12,315,56,14,
+                    SS_CENTERIMAGE
+    LTEXT           "Trigger Output  :",IDC_STATIC,12,334,56,14,
+                    SS_CENTERIMAGE
+    LTEXT           "Encoder Source:",IDC_STATIC,12,136,56,14,SS_CENTERIMAGE
+    COMBOBOX        IDC_CBO_ENC_SOURCE_00,78,134,108,168,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBO_ENC_SOURCE_01,196,134,108,168,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Active Level      :",IDC_STATIC,12,192,56,14,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_CBO_ACTIVE_LEVEL_00,78,192,108,131,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBO_ACTIVE_LEVEL_01,196,192,108,131,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "IN 3",IDC_CHK_IN_03,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,161,376,25,8
+    CONTROL         "OUT 0",IDC_CHK_OUT_10,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,197,386,25,16
+    CONTROL         "OUT 3",IDC_CHK_OUT_13,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,281,386,25,16
+    CONTROL         "OUT 2",IDC_CHK_OUT_02,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,133,386,25,16
+    CONTROL         "OUT 0",IDC_CHK_OUT_00,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,77,386,25,16
+    CONTROL         "IN 0",IDC_CHK_IN_00,"Button",BS_AUTOCHECKBOX | BS_LEFT | 
+                    WS_TABSTOP,77,376,25,8
+    GROUPBOX        "Digital Input/Output",IDC_STATIC,7,362,305,47,BS_FLAT
+    CONTROL         "OUT 1",IDC_CHK_OUT_01,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,105,386,25,16
+    CONTROL         "OUT 3",IDC_CHK_OUT_03,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,161,386,25,16
+    CONTROL         "OUT 1",IDC_CHK_OUT_11,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,225,386,25,16
+    CONTROL         "OUT 2",IDC_CHK_OUT_12,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,253,386,25,16
+    CONTROL         "IN 1",IDC_CHK_IN_01,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,105,376,25,8
+    CONTROL         "IN 2",IDC_CHK_IN_02,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,133,376,25,8
+    CONTROL         "IN 0",IDC_CHK_IN_10,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,197,376,25,8
+    CONTROL         "IN 1",IDC_CHK_IN_11,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,225,376,25,8
+    CONTROL         "IN 2",IDC_CHK_IN_12,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,253,376,25,8
+    CONTROL         "IN 3",IDC_CHK_IN_13,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,281,376,25,8
+    LTEXT           "Frequency       :",IDC_STATIC,12,297,56,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDT_FREQUENCY_00,78,297,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_FREQUENCY_01,196,297,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    CONTROL         "Encoder Reverse",IDC_CHK_ENC_REVERSE_00,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,78,103,71,10
+    CONTROL         "Encoder Reverse",IDC_CHK_ENC_REVERSE_01,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,196,103,71,10
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,190,374,2,28
+    LTEXT           "Digital Input      :",IDC_STATIC,12,374,56,14,
+                    SS_CENTERIMAGE
+    LTEXT           "Digital Output    :",IDC_STATIC,12,388,56,14,
+                    SS_CENTERIMAGE
+    LTEXT           "Direction Check :",IDC_STATIC,12,210,56,14,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_CBO_DIR_CHECK_00,78,210,108,131,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBO_DIR_CHECK_01,196,210,108,131,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Trigger Period   :",IDC_STATIC,12,229,56,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDT_TRIG_PERIOD_00,78,229,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_TRIG_PERIOD_01,196,229,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Pulse Width[us]:",IDC_STATIC,12,246,56,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDT_PULSE_WIDTH_00,78,246,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_PULSE_WIDTH_01,196,246,108,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Count Unit/Pulse:",IDC_STATIC,12,68,57,14,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_EDT_UNIT_PULSE_00,78,68,75,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_UNIT_PULSE_01,196,68,75,14,ES_RIGHT | 
+                    ES_AUTOHSCROLL
+    PUSHBUTTON      "Setting",IDC_BTN_SET_UNIT_00,155,67,32,16,0,
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Setting",IDC_BTN_SET_UNIT_01,274,67,32,16,0,
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Trigger Mode    :",IDC_STATIC,12,173,56,14,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_CBO_TRIG_MODE_00,78,173,108,131,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBO_TRIG_MODE_01,196,173,108,131,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,190,229,2,101
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,190,334,2,16
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,72,47,2,34
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,72,174,2,52
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,72,104,2,45
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,72,229,2,101
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,72,334,2,16
+    CONTROL         "Enable",IDC_CHK_TRIG_ENABLE_00,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,78,334,108,16
+    CONTROL         "Enable",IDC_CHK_TRIG_ENABLE_01,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,196,334,108,16
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYFRAME,70,374,2,28
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041203b5"
+        BEGIN
+            VALUE "Comments", "(2011.07.20 compiled r1.0) for EzSoftwareRM\0"
+            VALUE "CompanyName", "Ajinextek\0"
+            VALUE "FileDescription", "\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "CounterTest.exe\0"
+            VALUE "LegalCopyright", "Copyright (C) 2010 AJINEXTEK Co,. LTD.\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "CounterTest.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x412, 949
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO MOVEABLE PURE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_COUNTERTEST_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 312
+        VERTGUIDE, 12
+        VERTGUIDE, 196
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 472
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "CounterTest Information(&A)..."
+END
+
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\CounterTest.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
